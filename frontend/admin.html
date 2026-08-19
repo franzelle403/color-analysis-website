@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Makeup Database Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <h1>Makeup Database</h1>
+            <p>Add and manage products used for recommendations.</p>
+        </div>
+
+        <a href="index.html" class="back-button">
+            Back to Color Analysis
+        </a>
+    </header>
+
+
+    <main>
+
+        <!-- ADD / EDIT PRODUCT FORM -->
+
+        <section class="form-section">
+
+            <h2 id="form-title">
+                Add Makeup Product
+            </h2>
+
+            <form id="makeup-form">
+
+                <input
+                    type="hidden"
+                    id="product-id"
+                >
+
+
+                <div class="form-grid">
+
+                    <div>
+                        <label>Brand</label>
+
+                        <input
+                            id="brand"
+                            type="text"
+                            placeholder="Rom&nd"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>Product Name</label>
+
+                        <input
+                            id="product-name"
+                            type="text"
+                            placeholder="Juicy Lasting Tint"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>Category</label>
+
+                        <select
+                            id="category"
+                            required
+                        >
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Lip">
+                                Lip
+                            </option>
+
+                            <option value="Blush">
+                                Blush
+                            </option>
+
+                            <option value="Foundation">
+                                Foundation
+                            </option>
+
+                            <option value="Eyeshadow">
+                                Eyeshadow
+                            </option>
+
+                            <option value="Highlighter">
+                                Highlighter
+                            </option>
+
+                            <option value="Contour">
+                                Contour
+                            </option>
+
+                            <option value="Bronzer">
+                                Bronzer
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label>Shade</label>
+
+                        <input
+                            id="shade"
+                            type="text"
+                            placeholder="Nucadamia"
+                            required
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>Season</label>
+
+                        <select
+                            id="season"
+                            required
+                        >
+
+                            <option value="">
+                                Select season
+                            </option>
+
+                            <option value="Light Spring">
+                                Light Spring
+                            </option>
+
+                            <option value="Warm Spring">
+                                Warm Spring
+                            </option>
+
+                            <option value="Bright Spring">
+                                Bright Spring
+                            </option>
+
+                            <option value="Light Summer">
+                                Light Summer
+                            </option>
+
+                            <option value="Cool Summer">
+                                Cool Summer
+                            </option>
+
+                            <option value="Soft Summer">
+                                Soft Summer
+                            </option>
+
+                            <option value="Soft Autumn">
+                                Soft Autumn
+                            </option>
+
+                            <option value="Warm Autumn">
+                                Warm Autumn
+                            </option>
+
+                            <option value="Deep Autumn">
+                                Deep Autumn
+                            </option>
+
+                            <option value="Deep Winter">
+                                Deep Winter
+                            </option>
+
+                            <option value="Cool Winter">
+                                Cool Winter
+                            </option>
+
+                            <option value="Bright Winter">
+                                Bright Winter
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label>Undertone</label>
+
+                        <select id="undertone">
+
+                            <option value="">
+                                Select undertone
+                            </option>
+
+                            <option value="Warm">
+                                Warm
+                            </option>
+
+                            <option value="Cool">
+                                Cool
+                            </option>
+
+                            <option value="Neutral">
+                                Neutral
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label>Depth</label>
+
+                        <select id="depth">
+
+                            <option value="">
+                                Select depth
+                            </option>
+
+                            <option value="Light">
+                                Light
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="Deep">
+                                Deep
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label>Chroma</label>
+
+                        <select id="chroma">
+
+                            <option value="">
+                                Select chroma
+                            </option>
+
+                            <option value="Muted">
+                                Muted
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="Bright">
+                                Bright
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label>Price</label>
+
+                        <input
+                            id="price"
+                            type="number"
+                            step="0.01"
+                            placeholder="499"
+                        >
+                    </div>
+
+
+                    <div>
+                        <label>Image URL</label>
+
+                        <input
+                            id="image-url"
+                            type="url"
+                            placeholder="https://..."
+                        >
+                    </div>
+
+
+                    <div class="full-width">
+                        <label>Buy URL</label>
+
+                        <input
+                            id="buy-url"
+                            type="url"
+                            placeholder="https://shopee.ph/..."
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Save Product
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancel-edit"
+                        class="cancel-button"
+                        hidden
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- DATABASE -->
+
+        <section class="database-section">
+
+            <div class="database-heading">
+
+                <div>
+                    <h2>Current Products</h2>
+
+                    <p id="product-count">
+                        0 products
+                    </p>
+                </div>
+
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search makeup..."
+                >
+
+            </div>
+
+
+            <div
+                id="product-list"
+                class="product-grid"
+            >
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="admin.js"></script>
+
+</body>
+</html>

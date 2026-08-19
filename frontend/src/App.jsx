@@ -236,74 +236,215 @@ function App() {
             )}
 
 
-            {/* =========================
-                BACKEND RESULT
-            ========================= */}
+{/* =========================
+    BACKEND RESULT
+========================= */}
 
-            {result && result.analysis && (
-  <div className="result-box">
+{result && result.analysis && (
+  <>
+    <div className="result-box">
 
-    <div className="success-icon">
-      ✓
+      <div className="success-icon">
+        ✓
+      </div>
+
+      <p className="eyebrow">
+        YOUR COLOR PROFILE
+      </p>
+
+      <h3>
+        Your analysis is ready.
+      </h3>
+
+      <div className="profile-grid">
+
+        <div className="profile-item">
+          <span>Skin Depth</span>
+          <strong>
+            {result.analysis.skin_depth}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Undertone</span>
+          <strong>
+            {result.analysis.undertone}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Contrast</span>
+          <strong>
+            {result.analysis.contrast}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Lighting</span>
+          <strong>
+            {result.analysis.lighting}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Photo Quality</span>
+          <strong>
+            {result.analysis.image_quality}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Confidence</span>
+          <strong>
+            {result.analysis.confidence
+              ? `${Math.round(
+                  result.analysis.confidence * 100
+                )}%`
+              : "N/A"}
+          </strong>
+        </div>
+
+        {result.analysis.season && (
+          <div className="profile-item">
+            <span>Color Season</span>
+            <strong>
+              {result.analysis.season}
+            </strong>
+          </div>
+        )}
+
+      </div>
+
     </div>
 
-    <p className="eyebrow">
-      YOUR COLOR PROFILE
-    </p>
 
-    <h3>
-      Your analysis is ready.
-    </h3>
+    {/* =========================
+        MAKEUP RECOMMENDATIONS
+    ========================= */}
 
-    <div className="profile-grid">
+    <div className="recommendations-section">
 
-      <div className="profile-item">
-        <span>Skin Depth</span>
-        <strong>
-          {result.analysis.skin_depth}
-        </strong>
-      </div>
+      <p className="eyebrow">
+        YOUR MAKEUP MATCHES
+      </p>
 
-      <div className="profile-item">
-        <span>Undertone</span>
-        <strong>
-          {result.analysis.undertone}
-        </strong>
-      </div>
+      <h2>
+        Recommended makeup for you
+      </h2>
 
-      <div className="profile-item">
-        <span>Contrast</span>
-        <strong>
-          {result.analysis.contrast}
-        </strong>
-      </div>
+      {result.makeup_recommendations &&
+      result.makeup_recommendations.length > 0 ? (
 
-      <div className="profile-item">
-        <span>Lighting</span>
-        <strong>
-          {result.analysis.lighting}
-        </strong>
-      </div>
+        <div className="makeup-grid">
 
-      <div className="profile-item">
-        <span>Photo Quality</span>
-        <strong>
-          {result.analysis.image_quality}
-        </strong>
-      </div>
+          {result.makeup_recommendations.map(
+            (product) => (
 
-      <div className="profile-item">
-        <span>Confidence</span>
-        <strong>
-          {Math.round(
-            result.analysis.confidence * 100
-          )}%
-        </strong>
-      </div>
+              <div
+                className="makeup-card"
+                key={product.id}
+              >
+
+                {product.image_url ? (
+                  <img
+                    src={product.image_url}
+                    alt={`${product.brand} ${product.product_name}`}
+                    className="makeup-image"
+                  />
+                ) : (
+                  <div className="makeup-image-placeholder">
+                    No image
+                  </div>
+                )}
+
+                <div className="makeup-card-content">
+
+                  <span className="makeup-category">
+                    {product.category}
+                  </span>
+
+                  <h3>
+                    {product.brand}
+                  </h3>
+
+                  <p className="makeup-name">
+                    {product.product_name}
+                  </p>
+
+                  <p>
+                    Shade:{" "}
+                    <strong>
+                      {product.shade}
+                    </strong>
+                  </p>
+
+                  <div className="makeup-tags">
+
+                    {product.season && (
+                      <span>
+                        {product.season}
+                      </span>
+                    )}
+
+                    {product.undertone && (
+                      <span>
+                        {product.undertone}
+                      </span>
+                    )}
+
+                    {product.depth && (
+                      <span>
+                        {product.depth}
+                      </span>
+                    )}
+
+                    {product.chroma && (
+                      <span>
+                        {product.chroma}
+                      </span>
+                    )}
+
+                  </div>
+
+                  {product.price !== null &&
+                    product.price !== undefined && (
+                    <p className="makeup-price">
+                      ₱{Number(
+                        product.price
+                      ).toFixed(2)}
+                    </p>
+                  )}
+
+                  {product.buy_url && (
+                    <a
+                      href={product.buy_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="buy-button"
+                    >
+                      Buy Now
+                    </a>
+                  )}
+
+                </div>
+
+              </div>
+            )
+          )}
+
+        </div>
+
+      ) : (
+
+        <div className="no-recommendations">
+          No makeup recommendations were found
+          for this color profile yet.
+        </div>
+
+      )}
 
     </div>
-
-  </div>
+  </>
 )}
 
             <button
